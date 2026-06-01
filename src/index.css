@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply transition-colors duration-200;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-dark-bg dark:text-dark-text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-dark-bg2;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-dark-bg3 rounded-full hover:bg-gray-400 dark:hover:bg-dark-border;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-white dark:bg-dark-bg2 rounded-xl border border-gray-200 dark:border-dark-border shadow-sm;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 dark:disabled:bg-dark-bg3 font-medium transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-200 dark:bg-dark-bg3 text-gray-900 dark:text-dark-text rounded-lg hover:bg-gray-300 dark:hover:bg-dark-border font-medium transition-colors;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-gray-50 dark:bg-dark-bg3 border border-gray-200 dark:border-dark-border rounded-lg text-gray-900 dark:text-dark-text placeholder-gray-500 dark:placeholder-dark-text2 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-600;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+}
+
+/* Animations */
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-gray-200 dark:bg-dark-bg3 rounded animate-pulse;
+}
