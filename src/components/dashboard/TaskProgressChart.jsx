@@ -31,9 +31,9 @@ const TaskProgressChart = ({ tasks = [] }) => {
   ].filter((item) => item.value > 0);
 
   return (
-    <div className="card p-6">
+    <div className="card p-4 sm:p-6">
       {/* Header */}
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-dark-text mb-6">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-dark-text mb-4 sm:mb-6">
         Overall Progress
       </h3>
 
@@ -74,7 +74,7 @@ const TaskProgressChart = ({ tasks = [] }) => {
       )}
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4 mt-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mt-4 sm:mt-6">
         {["Assignment", "Quiz", "Exam", "Project"].map((type) => (
           <div
             key={type}

@@ -7,7 +7,7 @@ const StatsRow = ({ tasks = [] }) => {
   const stats = getTaskStats(tasks);
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
       <StatsCard
         icon={CheckCircle2}
         label="Total Tasks"

@@ -42,20 +42,20 @@ const ForgotPassword = () => {
         <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
       </div>
 
-      <div className="relative z-10 w-full max-w-md">
-        <div className="card p-8">
+      <div className="relative z-10 w-full max-w-md mx-auto">
+        <div className="card p-6 sm:p-8">
           <div className="flex justify-center mb-6">
             <div className="p-3 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600">
-              <GraduationCap size={40} className="text-white" />
+              <GraduationCap size={36} className="sm:size-[40px] text-white" />
             </div>
           </div>
 
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">
               Taskora
             </h1>
-            <p className="text-gray-600 dark:text-dark-text2">Reset Password</p>
-            <p className="text-sm text-gray-500 dark:text-dark-text2">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-dark-text2">Reset Password</p>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-dark-text2">
               {sent
                 ? "Check your email for the reset link"
                 : "Enter your email and we'll send you a reset link"}
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                 </label>
                 <div className="relative">
                   <Mail
-                    className="absolute left-3 top-3 text-gray-400 dark:text-dark-text2"
+                    className="absolute left-4 top-3 text-gray-400 dark:text-dark-text2"
                     size={20}
                   />
                   <input
@@ -78,7 +78,7 @@ const ForgotPassword = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="input-field pl-10"
+                    className="input-field pl-14 text-sm sm:text-base"
                   />
                 </div>
               </div>

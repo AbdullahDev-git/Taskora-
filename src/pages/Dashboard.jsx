@@ -73,17 +73,17 @@ const DashboardContent = () => {
   };
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Welcome Banner */}
       <WelcomeBanner userName={capitalizeName(userProfile?.name)} tasks={tasks} />
 
       {/* Stats Row */}
       {loading ? (
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="card p-6">
-              <div className="h-4 w-20 bg-gray-200 dark:bg-dark-bg3 rounded animate-pulse mb-3" />
-              <div className="h-8 w-16 bg-gray-200 dark:bg-dark-bg3 rounded animate-pulse" />
+            <div key={i} className="card p-4 sm:p-6">
+              <div className="h-4 w-16 sm:w-20 bg-gray-200 dark:bg-dark-bg3 rounded animate-pulse mb-3" />
+              <div className="h-8 w-12 sm:w-16 bg-gray-200 dark:bg-dark-bg3 rounded animate-pulse" />
             </div>
           ))}
         </div>
@@ -92,9 +92,9 @@ const DashboardContent = () => {
       )}
 
       {/* Main Grid */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {/* Left Column - Recent Tasks */}
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <RecentTasksTable tasks={tasks} onDelete={handleDeleteTask} />
         </div>
 

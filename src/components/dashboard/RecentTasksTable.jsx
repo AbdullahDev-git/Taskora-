@@ -11,7 +11,7 @@ const RecentTasksTable = ({ tasks = [], onDelete }) => {
   return (
     <div className="card overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b border-gray-200 dark:border-dark-border">
+      <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-dark-border">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-dark-text">
           Recent Tasks
         </h3>

@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   GraduationCap,
-  User,
-  Mail,
-  Lock,
   Eye,
   EyeOff,
-  Check,
 } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { isValidEmail, isStrongPassword } from "../../utils/helpers";
@@ -86,22 +82,22 @@ const Signup = () => {
       </div>
 
       {/* Card */}
-      <div className="relative z-10 w-full max-w-md">
-        <div className="card p-8">
+      <div className="relative z-10 w-full max-w-md mx-auto">
+        <div className="card p-6 sm:p-8">
           {/* Logo */}
           <div className="flex justify-center mb-6">
             <div className="p-3 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600">
-              <GraduationCap size={40} className="text-white" />
+              <GraduationCap size={36} className="sm:size-[40px] text-white" />
             </div>
           </div>
 
           {/* Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">
               Taskora
             </h1>
-            <p className="text-gray-600 dark:text-dark-text2">Create Account</p>
-            <p className="text-sm text-gray-500 dark:text-dark-text2">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-dark-text2">Create Account</p>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-dark-text2">
               Join the community and start organizing your tasks efficiently.
             </p>
           </div>
@@ -114,10 +110,6 @@ const Signup = () => {
                 Full Name
               </label>
               <div className="relative">
-                <User
-                  className="absolute left-4 top-3 text-gray-400 dark:text-dark-text2"
-                  size={20}
-                />
                 <input
                   type="text"
                   value={fullName}
@@ -126,7 +118,7 @@ const Signup = () => {
                     if (errors.fullName) setErrors({ ...errors, fullName: "" });
                   }}
                   placeholder="Enter your full name"
-                  className="input-field pl-14"
+                  className="input-field text-sm sm:text-base"
                 />
               </div>
               {errors.fullName && (
@@ -140,10 +132,6 @@ const Signup = () => {
                 Email Address
               </label>
               <div className="relative">
-                <Mail
-                  className="absolute left-4 top-3 text-gray-400 dark:text-dark-text2"
-                  size={20}
-                />
                 <input
                   type="email"
                   value={email}
@@ -152,7 +140,7 @@ const Signup = () => {
                     if (errors.email) setErrors({ ...errors, email: "" });
                   }}
                   placeholder="name@example.com"
-                  className="input-field pl-14"
+                  className="input-field text-sm sm:text-base"
                 />
               </div>
               {errors.email && (
@@ -166,10 +154,6 @@ const Signup = () => {
                 Password
               </label>
               <div className="relative">
-                <Lock
-                  className="absolute left-4 top-3 text-gray-400 dark:text-dark-text2"
-                  size={20}
-                />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -178,7 +162,7 @@ const Signup = () => {
                     if (errors.password) setErrors({ ...errors, password: "" });
                   }}
                   placeholder="Min. 6 characters"
-                  className="input-field pl-14 pr-14"
+                  className="input-field pr-14 text-sm sm:text-base"
                 />
                 <button
                   type="button"
@@ -199,10 +183,6 @@ const Signup = () => {
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock
-                  className="absolute left-4 top-3 text-gray-400 dark:text-dark-text2"
-                  size={20}
-                />
                 <input
                   type={showConfirm ? "text" : "password"}
                   value={confirmPassword}
@@ -212,7 +192,7 @@ const Signup = () => {
                       setErrors({ ...errors, confirmPassword: "" });
                   }}
                   placeholder="Repeat your password"
-                  className="input-field pl-14 pr-14"
+                  className="input-field pr-14 text-sm sm:text-base"
                 />
                 <button
                   type="button"
@@ -252,7 +232,7 @@ const Signup = () => {
           </div>
 
           {/* Login Link */}
-          <p className="text-center text-gray-600 dark:text-dark-text2">
+          <p className="text-center text-sm sm:text-base text-gray-600 dark:text-dark-text2">
             Already have an account?{" "}
             <Link
               to="/login"

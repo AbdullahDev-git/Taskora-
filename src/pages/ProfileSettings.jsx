@@ -15,9 +15,6 @@ const ProfileSettings = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-  // ============================================
-  // Personal Info State
-  // ============================================
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
     lastName: "",
@@ -25,27 +22,18 @@ const ProfileSettings = () => {
     bio: "",
   });
 
-  // ============================================
-  // Notification Preferences State
-  // ============================================
   const [notifications, setNotifications] = useState({
     deadlineReminders: true,
     dailySummary: true,
     overdueAlerts: true,
   });
 
-  // ============================================
-  // Security State
-  // ============================================
   const [security, setSecurity] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
 
-  // ============================================
-  // Initialize from user profile
-  // ============================================
   useEffect(() => {
     if (userProfile) {
       const [firstName, ...lastNameParts] = (userProfile.name || "").split(" ");
@@ -62,9 +50,6 @@ const ProfileSettings = () => {
     }
   }, [userProfile]);
 
-  // ============================================
-  // HANDLE PERSONAL INFO UPDATE
-  // ============================================
   const handlePersonalInfoUpdate = async (e) => {
     e.preventDefault();
 
@@ -96,9 +81,6 @@ const ProfileSettings = () => {
     }
   };
 
-  // ============================================
-  // HANDLE NOTIFICATION PREFERENCES UPDATE
-  // ============================================
   const handleNotificationUpdate = async (key) => {
     try {
       const newNotifications = { ...notifications, [key]: !notifications[key] };
@@ -117,9 +99,6 @@ const ProfileSettings = () => {
     }
   };
 
-  // ============================================
-  // HANDLE PASSWORD CHANGE
-  // ============================================
   const handlePasswordChange = async (e) => {
     e.preventDefault();
 
@@ -165,9 +144,6 @@ const ProfileSettings = () => {
     }
   };
 
-  // ============================================
-  // HANDLE DELETE ACCOUNT
-  // ============================================
   const handleDeleteAccount = async () => {
     try {
       if (!user) {
@@ -206,36 +182,36 @@ const ProfileSettings = () => {
   };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto space-y-8">
+    <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-dark-text mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-2">
           Profile & Settings
         </h1>
-        <p className="text-gray-600 dark:text-dark-text2">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-dark-text2">
           Manage your account, preferences, and security settings
         </p>
       </div>
 
       {/* User Header Card */}
-      <div className="card p-8 bg-gradient-to-r from-primary-500 to-primary-600 text-white">
-        <div className="flex items-center gap-6">
+      <div className="card p-4 sm:p-6 lg:p-8 bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-full bg-white bg-opacity-20 border-2 border-white flex items-center justify-center text-3xl font-bold">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white bg-opacity-20 border-2 border-white flex items-center justify-center text-2xl sm:text-3xl font-bold flex-shrink-0">
             {getInitials(userProfile?.name || "User")}
           </div>
 
           {/* User Info */}
           <div className="flex-1">
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-xl sm:text-2xl font-bold">
               {capitalizeName(userProfile?.name) || "User"}
             </h2>
-            <p className="text-primary-100">{userProfile?.email}</p>
-            <div className="flex gap-2 mt-2">
-              <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium">
+            <p className="text-sm sm:text-base text-primary-100">{userProfile?.email}</p>
+            <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-2">
+              <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm font-medium">
                 Pro Member
               </span>
-              <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm font-medium">
                 Active Tasks: {tasks.filter(t => t.status !== "Completed").length}
               </span>
             </div>
@@ -244,24 +220,21 @@ const ProfileSettings = () => {
       </div>
 
       {/* Settings Sections */}
-      <div className="space-y-8">
+      <div className="space-y-4 sm:space-y-6 lg:space-y-8">
         {/* ============================================ */}
         {/* PERSONAL INFO SECTION */}
         {/* ============================================ */}
-        <div className="card p-8">
-          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200 dark:border-dark-border">
-            <Settings
-              size={24}
-              className="text-primary-600 dark:text-primary-400"
-            />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text">
+        <div className="card p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-200 dark:border-dark-border">
+            <Settings size={20} className="sm:size-[24px] text-primary-600 dark:text-primary-400" />
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-dark-text">
               Personal Info
             </h3>
           </div>
 
-          <form onSubmit={handlePersonalInfoUpdate} className="space-y-4">
+          <form onSubmit={handlePersonalInfoUpdate} className="space-y-3 sm:space-y-4">
             {/* First Name and Last Name */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-dark-text mb-2">
                   First Name
@@ -276,7 +249,7 @@ const ProfileSettings = () => {
                     })
                   }
                   placeholder="Alex"
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                 />
               </div>
 
@@ -294,7 +267,7 @@ const ProfileSettings = () => {
                     })
                   }
                   placeholder="Rivera"
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                 />
               </div>
             </div>
@@ -311,7 +284,7 @@ const ProfileSettings = () => {
                   setPersonalInfo({ ...personalInfo, email: e.target.value })
                 }
                 placeholder="alex.rivera@taskora.edu"
-                className="input-field"
+                className="input-field text-sm sm:text-base"
               />
               <p className="text-xs text-gray-500 dark:text-dark-text2 mt-1">
                 A verification email will be sent to confirm the change
@@ -330,16 +303,16 @@ const ProfileSettings = () => {
                 }
                 placeholder="Tell us about yourself..."
                 rows="3"
-                className="input-field resize-none"
+                className="input-field resize-none text-sm sm:text-base"
               />
             </div>
 
             {/* Save Button */}
-            <div className="pt-4 flex justify-end">
+            <div className="pt-3 sm:pt-4 flex justify-end">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="btn-primary flex items-center gap-2 disabled:opacity-50"
+                className="btn-primary flex items-center gap-2 disabled:opacity-50 w-full sm:w-auto"
               >
                 <Save size={18} />
                 Save Changes
@@ -351,32 +324,29 @@ const ProfileSettings = () => {
         {/* ============================================ */}
         {/* NOTIFICATION PREFERENCES SECTION */}
         {/* ============================================ */}
-        <div className="card p-8">
-          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200 dark:border-dark-border">
-            <Bell
-              size={24}
-              className="text-primary-600 dark:text-primary-400"
-            />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text">
+        <div className="card p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-200 dark:border-dark-border">
+            <Bell size={20} className="sm:size-[24px] text-primary-600 dark:text-primary-400" />
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-dark-text">
               Notification Preferences
             </h3>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {/* Deadline Reminders */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900 dark:text-dark-text">
+            <div className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
+              <div className="flex-1 min-w-0 mr-3">
+                <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-dark-text">
                   Deadline Reminders
                 </p>
-                <p className="text-sm text-gray-600 dark:text-dark-text2">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-dark-text2">
                   Notify 1 hour before due date
                 </p>
               </div>
 
               <button
                 onClick={() => handleNotificationUpdate("deadlineReminders")}
-                className={`relative w-12 h-7 rounded-full transition-colors ${
+                className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
                   notifications.deadlineReminders
                     ? "bg-primary-600"
                     : "bg-gray-300 dark:bg-dark-border"
@@ -391,19 +361,19 @@ const ProfileSettings = () => {
             </div>
 
             {/* Daily Summary */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900 dark:text-dark-text">
+            <div className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
+              <div className="flex-1 min-w-0 mr-3">
+                <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-dark-text">
                   Daily Summary
                 </p>
-                <p className="text-sm text-gray-600 dark:text-dark-text2">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-dark-text2">
                   Morning digest of pending tasks
                 </p>
               </div>
 
               <button
                 onClick={() => handleNotificationUpdate("dailySummary")}
-                className={`relative w-12 h-7 rounded-full transition-colors ${
+                className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
                   notifications.dailySummary
                     ? "bg-primary-600"
                     : "bg-gray-300 dark:bg-dark-border"
@@ -418,19 +388,19 @@ const ProfileSettings = () => {
             </div>
 
             {/* Overdue Alerts */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-900 dark:text-dark-text">
+            <div className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 dark:bg-dark-bg3 rounded-lg">
+              <div className="flex-1 min-w-0 mr-3">
+                <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-dark-text">
                   Overdue Alerts
                 </p>
-                <p className="text-sm text-gray-600 dark:text-dark-text2">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-dark-text2">
                   Immediate alerts for missed deadlines
                 </p>
               </div>
 
               <button
                 onClick={() => handleNotificationUpdate("overdueAlerts")}
-                className={`relative w-12 h-7 rounded-full transition-colors ${
+                className={`relative w-12 h-7 rounded-full transition-colors flex-shrink-0 ${
                   notifications.overdueAlerts
                     ? "bg-primary-600"
                     : "bg-gray-300 dark:bg-dark-border"
@@ -449,18 +419,15 @@ const ProfileSettings = () => {
         {/* ============================================ */}
         {/* SECURITY SECTION */}
         {/* ============================================ */}
-        <div className="card p-8">
-          <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200 dark:border-dark-border">
-            <Shield
-              size={24}
-              className="text-primary-600 dark:text-primary-400"
-            />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text">
+        <div className="card p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-200 dark:border-dark-border">
+            <Shield size={20} className="sm:size-[24px] text-primary-600 dark:text-primary-400" />
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-dark-text">
               Security
             </h3>
           </div>
 
-          <form onSubmit={handlePasswordChange} className="space-y-4">
+          <form onSubmit={handlePasswordChange} className="space-y-3 sm:space-y-4">
             {/* Current Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-dark-text mb-2">
@@ -472,8 +439,8 @@ const ProfileSettings = () => {
                 onChange={(e) =>
                   setSecurity({ ...security, currentPassword: e.target.value })
                 }
-                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
-                className="input-field"
+                placeholder="••••••••"
+                className="input-field text-sm sm:text-base"
               />
             </div>
 
@@ -488,8 +455,8 @@ const ProfileSettings = () => {
                 onChange={(e) =>
                   setSecurity({ ...security, newPassword: e.target.value })
                 }
-                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
-                className="input-field"
+                placeholder="••••••••"
+                className="input-field text-sm sm:text-base"
               />
             </div>
 
@@ -504,17 +471,17 @@ const ProfileSettings = () => {
                 onChange={(e) =>
                   setSecurity({ ...security, confirmPassword: e.target.value })
                 }
-                placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
-                className="input-field"
+                placeholder="••••••••"
+                className="input-field text-sm sm:text-base"
               />
             </div>
 
             {/* Update Button */}
-            <div className="pt-4 flex justify-end">
+            <div className="pt-3 sm:pt-4 flex justify-end">
               <button
                 type="submit"
                 disabled={isLoading || !security.currentPassword}
-                className="btn-primary flex items-center gap-2 disabled:opacity-50"
+                className="btn-primary flex items-center gap-2 disabled:opacity-50 w-full sm:w-auto"
               >
                 <Shield size={18} />
                 Update Password
@@ -526,22 +493,22 @@ const ProfileSettings = () => {
         {/* ============================================ */}
         {/* DANGER ZONE SECTION */}
         {/* ============================================ */}
-        <div className="card p-8 border-2 border-red-200 dark:border-red-900 dark:border-opacity-20">
-          <div className="flex items-center gap-3 mb-6 pb-6 border-b-2 border-red-200 dark:border-red-900 dark:border-opacity-20">
-            <AlertCircle size={24} className="text-red-600 dark:text-red-400" />
-            <h3 className="text-xl font-bold text-red-600 dark:text-red-400">
+        <div className="card p-4 sm:p-6 lg:p-8 border-2 border-red-200 dark:border-red-900 dark:border-opacity-20">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b-2 border-red-200 dark:border-red-900 dark:border-opacity-20">
+            <AlertCircle size={20} className="sm:size-[24px] text-red-600 dark:text-red-400" />
+            <h3 className="text-lg sm:text-xl font-bold text-red-600 dark:text-red-400">
               Danger Zone
             </h3>
           </div>
 
-          <p className="text-gray-600 dark:text-dark-text2 mb-4">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-dark-text2 mb-4">
             Once you delete your account, there is no going back. Please be
             certain.
           </p>
 
           <button
             onClick={() => setShowDeleteConfirm(true)}
-            className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+            className="w-full sm:w-auto px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
           >
             Delete Account
           </button>

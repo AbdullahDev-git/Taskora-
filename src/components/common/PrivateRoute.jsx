@@ -10,6 +10,7 @@ import Loader from "./Loader";
 const PrivateRoute = () => {
   const { isAuthenticated, loading, user } = useAuth();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   if (loading) {
     return <Loader />;
@@ -23,12 +24,20 @@ const PrivateRoute = () => {
     <TaskProvider userId={user?.uid}>
       <NotificationProvider userId={user?.uid}>
         <div className="flex h-screen bg-gray-50 dark:bg-dark-bg">
+          {mobileSidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+              onClick={() => setMobileSidebarOpen(false)}
+            />
+          )}
           <Sidebar
             collapsed={sidebarCollapsed}
             onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+            mobileOpen={mobileSidebarOpen}
+            onMobileClose={() => setMobileSidebarOpen(false)}
           />
           <div className="flex flex-col flex-1 overflow-hidden">
-            <TopBar />
+            <TopBar onMenuClick={() => setMobileSidebarOpen(true)} />
             <main className="flex-1 overflow-auto">
               <Outlet />
             </main>

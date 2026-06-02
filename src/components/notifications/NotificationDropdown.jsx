@@ -8,9 +8,9 @@ const NotificationDropdown = ({ onClose }) => {
     useNotifications();
 
   return (
-    <div className="absolute top-12 right-0 w-96 bg-white dark:bg-dark-bg2 rounded-xl border border-gray-200 dark:border-dark-border shadow-lg z-50">
+    <div className="absolute top-12 right-0 w-80 sm:w-96 bg-white dark:bg-dark-bg2 rounded-xl border border-gray-200 dark:border-dark-border shadow-lg z-50">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-dark-border flex items-center justify-between">
+      <div className="p-3 sm:p-4 border-b border-gray-200 dark:border-dark-border flex items-center justify-between">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-dark-text">
             Notifications
@@ -43,7 +43,7 @@ const NotificationDropdown = ({ onClose }) => {
           notifications.map((notif) => (
             <div
               key={notif.id}
-              className={`p-4 border-b border-gray-100 dark:border-dark-bg3 hover:bg-gray-50 dark:hover:bg-dark-bg3 transition-colors flex items-start gap-3 ${
+              className={`p-3 sm:p-4 border-b border-gray-100 dark:border-dark-bg3 hover:bg-gray-50 dark:hover:bg-dark-bg3 transition-colors flex items-start gap-3 ${
                 !notif.isRead
                   ? "bg-blue-50 dark:bg-blue-900 dark:bg-opacity-20"
                   : ""

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Settings, LogOut, ChevronDown } from "lucide-react";
+import { Settings, LogOut, ChevronDown, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { getInitials, capitalizeName } from "../../utils/helpers";
 import ThemeToggle from "../common/ThemeToggle";
 import NotificationBell from "../notifications/NotificationBell";
 
-const TopBar = () => {
+const TopBar = ({ onMenuClick }) => {
   const { userProfile, logout } = useAuth();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -29,8 +29,15 @@ const TopBar = () => {
   };
 
   return (
-    <div className="h-16 bg-white dark:bg-dark-bg2 border-b border-gray-200 dark:border-dark-border px-6 flex items-center justify-between">
-      <div />
+    <div className="h-16 bg-white dark:bg-dark-bg2 border-b border-gray-200 dark:border-dark-border px-4 lg:px-6 flex items-center justify-between">
+      <button
+        onClick={onMenuClick}
+        className="lg:hidden p-2 rounded-lg text-gray-600 dark:text-dark-text2 hover:bg-gray-100 dark:hover:bg-dark-bg3 transition-colors"
+        title="Open menu"
+      >
+        <Menu size={22} />
+      </button>
+      <div className="hidden lg:block" />
 
       <div className="flex items-center gap-4">
         <ThemeToggle />

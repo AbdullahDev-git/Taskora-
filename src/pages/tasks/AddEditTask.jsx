@@ -113,25 +113,25 @@ const AddEditTaskContent = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium mb-4"
+          className="flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium mb-3 sm:mb-4"
         >
           <ArrowLeft size={20} />
           Back
         </button>
 
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-dark-text">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text">
           {id ? "Edit Task" : "Create New Task"}
         </h1>
       </div>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="max-w-2xl">
-        <div className="card p-8 space-y-6">
+        <div className="card p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
           {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-dark-text mb-2">
@@ -151,7 +151,7 @@ const AddEditTaskContent = () => {
           </div>
 
           {/* Type and Priority */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-dark-text mb-2">
                 Task Type *
@@ -190,7 +190,7 @@ const AddEditTaskContent = () => {
           </div>
 
           {/* Subject and Deadline */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-dark-text mb-2">
                 Subject *
@@ -253,11 +253,11 @@ const AddEditTaskContent = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 justify-end pt-4 border-t border-gray-200 dark:border-dark-border">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 justify-end pt-4 border-t border-gray-200 dark:border-dark-border">
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="btn-secondary"
+              className="btn-secondary w-full sm:w-auto"
             >
               Cancel
             </button>
@@ -265,7 +265,7 @@ const AddEditTaskContent = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="btn-primary disabled:opacity-50"
+              className="btn-primary disabled:opacity-50 w-full sm:w-auto"
             >
               {isLoading
                 ? id
