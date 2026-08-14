@@ -68,6 +68,19 @@ const Signup = () => {
       navigate("/dashboard", { replace: true });
     } catch (err) {
       console.error("Signup error:", err);
+      const code = err?.code;
+      if (code === "auth/email-already-in-use") {
+        setErrors({ email: "This email is already registered. Please log in instead." });
+        toast.error("This email is already registered.");
+      } else if (code === "auth/invalid-email") {
+        setErrors({ email: "Invalid email address." });
+        toast.error("Invalid email address.");
+      } else if (code === "auth/weak-password") {
+        setErrors({ password: "Password is too weak." });
+        toast.error("Password is too weak.");
+      } else {
+        toast.error("Signup failed. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }

@@ -37,6 +37,18 @@ const Login = () => {
       navigate("/dashboard", { replace: true });
     } catch (err) {
       console.error("Login error:", err);
+      const code = err?.code;
+      if (code === "auth/user-not-found") {
+        setErrors({ email: "No account found with this email." });
+      } else if (code === "auth/wrong-password") {
+        setErrors({ password: "Incorrect password." });
+      } else if (code === "auth/invalid-email") {
+        setErrors({ email: "Invalid email address." });
+      } else if (code === "auth/too-many-requests") {
+        toast.error("Too many attempts. Please try again later.");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
